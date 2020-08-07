@@ -1,6 +1,11 @@
 import discord
+from discord.ext.commands import Bot
 
-TOKEN = 'XXXXXXXXXX'
+TOKEN = 'NzQxMzAzMjg4NDUxOTU2Nzc2.Xy1mfA.RXGHTWPPnid63b0Qp7SDhTCB-wI'
+
+BOT_PREFIX = "!"
+
+#bot = Bot(command_prefix=BOT_PREFIX)
 
 client = discord.Client()
 
@@ -8,9 +13,10 @@ client = discord.Client()
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content.startswith('hello'):
+    if message.content.startswith(BOT_PREFIX + 'hello'):
         msg = 'Hello {0.author.mention}'.format(message)
-        await client.send_message(message.channel, msg)
+        await message.channel.send(msg)
+
 
 @client.event
 async def on_ready():
