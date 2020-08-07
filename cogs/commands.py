@@ -23,8 +23,8 @@ class BasicCog(commands.Cog):
         await message.channel.send(solution)
 
     @commands.command(name='codehelp')
-    async def codehelp(self, message):
-        search = '{0.message.content}'.format(message)[10:].replace(" ", "+")
+    async def codehelp(self, message, arg):
+        search = arg.replace(" ", "+")
         await message.channel.send('https://github.com/search?q=' + search + '&ref=simplesearch')
         await message.channel.send('https://stackoverflow.com/search?q=' + search)
 
@@ -80,4 +80,3 @@ class BasicCog(commands.Cog):
 
 def setup(bot):
   bot.add_cog(BasicCog(bot))
-  
