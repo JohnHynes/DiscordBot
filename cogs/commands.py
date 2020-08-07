@@ -2,7 +2,6 @@ import discord
 import requests, json
 from discord.ext import commands
 
-
 class BasicCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
