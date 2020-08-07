@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-TOKEN = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+TOKEN = 'NzQxMzAzMjg4NDUxOTU2Nzc2.Xy1mfA.P8nYNnA_xcNq1xUWBNGlIp1YLUc'
 
 BOT_PREFIX = "!"
 

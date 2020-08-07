@@ -22,6 +22,12 @@ class BasicCog(commands.Cog):
         solution = eval(problem[6:])
         await message.channel.send(solution)
 
+    @commands.command(name='codehelp')
+    async def codehelp(self, message):
+        search = '{0.message.content}'.format(message)[10:].replace(" ", "+")
+        await message.channel.send('https://github.com/search?q=' + search + '&ref=simplesearch')
+        await message.channel.send('https://stackoverflow.com/search?q=' + search)
+
     @commands.command(name='weather')
     async def weather(self, message, arg):
         api_key = "7e7928224d722fcf2ffbb1af2b4499bc"
@@ -74,3 +80,4 @@ class BasicCog(commands.Cog):
 
 def setup(bot):
   bot.add_cog(BasicCog(bot))
+  
