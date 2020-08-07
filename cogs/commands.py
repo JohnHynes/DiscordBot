@@ -12,15 +12,12 @@ class BasicCog(commands.Cog):
         await message.channel.send(msg)
 
     @commands.command(name='echo')
-    async def echo(self, message):
-        msg = '{0.message.content}'.format(message)
-        await message.channel.send(msg[5:])
+    async def echo(self, message, arg):
+        await message.channel.send(arg)
 
     @commands.command(name='math')
-    async def math(self, message):
-        problem = '{0.message.content}'.format(message)
-        solution = eval(problem[6:])
-        await message.channel.send(solution)
+    async def math(self, message, arg):
+        await message.channel.send(eval(arg))
 
     @commands.command(name='codehelp')
     async def codehelp(self, message, arg):
