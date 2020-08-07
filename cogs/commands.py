@@ -19,10 +19,10 @@ class BasicCog(commands.Cog):
         await message.channel.send(msg[5:])
 
     @commands.command(name='weather')
-    async def on_message(self, message):
+    async def on_message(self, message, arg):
         api_key = "7e7928224d722fcf2ffbb1af2b4499bc"
         base_url = "http://api.openweathermap.org/data/2.5/weather?"
-        city_name = "washington"
+        city_name = arg
         complete_url = base_url + "appid=" + api_key + "&q=" + city_name
         response = requests.get(complete_url)
         x = response.json()
