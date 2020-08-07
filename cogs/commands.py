@@ -16,6 +16,12 @@ class BasicCog(commands.Cog):
         msg = '{0.message.content}'.format(message)
         await message.channel.send(msg[5:])
 
+    @commands.command(name='math')
+    async def math(self, message):
+        problem = '{0.message.content}'.format(message)
+        solution = eval(problem[6:])
+        await message.channel.send(solution)
+
     @commands.command(name='weather')
     async def weather(self, message, arg):
         api_key = "7e7928224d722fcf2ffbb1af2b4499bc"
