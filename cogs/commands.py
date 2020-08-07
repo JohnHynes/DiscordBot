@@ -1,6 +1,5 @@
 import discord
 import requests, json
-import weather_forecast as wf
 from discord.ext import commands
 
 
@@ -9,17 +8,17 @@ class BasicCog(commands.Cog):
         self.bot = bot
 
     @commands.command(name='hello')
-    async def on_message(self, message):
+    async def hello(self, message):
         msg = 'Hello {0.author.mention}'.format(message)
         await message.channel.send(msg)
 
     @commands.command(name='echo')
-    async def on_message(self, message):
+    async def echo(self, message):
         msg = '{0.message.content}'.format(message)
         await message.channel.send(msg[5:])
 
     @commands.command(name='weather')
-    async def on_message(self, message, arg):
+    async def weather(self, message, arg):
         api_key = "7e7928224d722fcf2ffbb1af2b4499bc"
         base_url = "http://api.openweathermap.org/data/2.5/weather?"
         city_name = arg
@@ -54,13 +53,14 @@ class BasicCog(commands.Cog):
             # the 0th index of z 
             weather_description = z[0]["description"]
             
-            msg = (" Temperature (in kelvin unit) = " +
-                    str(current_temperature) + 
-          "\n atmospheric pressure (in hPa unit) = " +
+            msg = ( "Weather in " + arg + 
+          "\n Temperature = " +
+                    str((current_temperature - 273.15) * 9/5 + 32) + 
+          "°F \n Atmospheric Pressure = " +
                     str(current_pressure) +
-          "\n humidity (in percentage) = " +
+          "hPa \n Humidity = " +
                     str(current_humidiy) +
-          "\n description = " +
+          "% \n Normal Description = " +
                     str(weather_description)).format(message)
         else: 
             msg = (" City Not Found ").format(message) 
