@@ -17,7 +17,10 @@ class BasicCog(commands.Cog):
 
     @commands.command(name='math')
     async def math(self, message, arg):
-        await message.channel.send(eval(arg))
+        try:
+            await message.channel.send(eval(arg))
+        except:
+            await message.channel.send('Syntax Error')   
 
     @commands.command(name='codehelp')
     async def codehelp(self, message, arg):
@@ -29,7 +32,7 @@ class BasicCog(commands.Cog):
     async def weather(self, message, arg):
         api_key = "7e7928224d722fcf2ffbb1af2b4499bc"
         base_url = "http://api.openweathermap.org/data/2.5/weather?"
-        city_name = arg
+        city_name = arg.replace(" ", "+")
         complete_url = base_url + "appid=" + api_key + "&q=" + city_name
         response = requests.get(complete_url)
         x = response.json()
