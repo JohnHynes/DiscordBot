@@ -48,7 +48,7 @@ class BasicCog(commands.Cog):
          
             weather_description = api_data["weather"][0]["description"] 
             
-            msg = ( "Weather in " + arg + 
+            msg = ( "Weather in " + '{0.message.content}'.format(message)[9:] + 
           "\n Temperature = " +
                     str((current_temperature - 273.15) * 9/5 + 32) + 
           "°F \n Atmospheric Pressure = " +
