@@ -35,34 +35,18 @@ class BasicCog(commands.Cog):
         city_name = arg.replace(" ", "+")
         complete_url = base_url + "appid=" + api_key + "&q=" + city_name
         response = requests.get(complete_url)
-        x = response.json()
+        api_data = response.json()
         
-        if x["cod"] != "404": 
+        if api_data["cod"] != "404": 
+            weather_data = api_data["main"] 
         
-            # store the value of "main" 
-            # key in variable y 
-            y = x["main"] 
+            current_temperature = weather_data["temp"] 
         
-            # store the value corresponding 
-            # to the "temp" key of y 
-            current_temperature = y["temp"] 
+            current_pressure = weather_data["pressure"] 
         
-            # store the value corresponding 
-            # to the "pressure" key of y 
-            current_pressure = y["pressure"] 
-        
-            # store the value corresponding 
-            # to the "humidity" key of y 
-            current_humidiy = y["humidity"] 
-        
-            # store the value of "weather" 
-            # key in variable z 
-            z = x["weather"] 
-        
-            # store the value corresponding  
-            # to the "description" key at  
-            # the 0th index of z 
-            weather_description = z[0]["description"]
+            current_humidiy = weather_data["humidity"] 
+         
+            weather_description = api_data["weather"][0]["description"] 
             
             msg = ( "Weather in " + arg + 
           "\n Temperature = " +
